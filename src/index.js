@@ -1,13 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home';
+import Devices from './pages/Devices';
+import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: Home
+  },
+  {
+    path: "/devices/apple-iphone-16",
+    Component: Devices
+  },
+  {
+    path: "/devices/samsung-galaxy-a14",
+    Component: Devices
+  },
+  {
+    path: "/devices/google-pixel-6",
+    Component: Devices
+  }
+])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

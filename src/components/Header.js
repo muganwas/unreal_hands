@@ -15,8 +15,11 @@ export default function Header() {
                         <NavLink to={"/devices/samsung-galaxy-a14"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
                             Samsung Galaxy A14
                         </NavLink>
-                        <NavLink to={"/devices/google-pixel-6"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
-                            Google Pixel 6
+                        <NavLink to={"/devices/google-pixel-8"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
+                            Google Pixel 8
+                        </NavLink>
+                        <NavLink to={"/devices/ipad"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
+                            iPad
                         </NavLink>
                     </nav>
                 </div>

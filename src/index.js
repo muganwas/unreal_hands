@@ -20,7 +20,11 @@ const router = createBrowserRouter([
     Component: Devices
   },
   {
-    path: "/devices/google-pixel-6",
+    path: "/devices/google-pixel-8",
+    Component: Devices
+  },
+  {
+    path: "/devices/ipad",
     Component: Devices
   }
 ])

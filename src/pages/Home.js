@@ -20,7 +20,7 @@ export default function Home() {
     const [showCart, setShowCartOverlay] = useState(false);
     const [showDownload, setShowDownload] = useState(false);
     const [boughtVideo, setBoughtVideo] = useState(false);
-    const [showGITOverlay, setshowGITOverlay] = useState(false);
+    const [showGITOverlay, setShowGITOverlay] = useState(false);
     const [selectedVideo, setSelectedVideo] = useState();
 
     useEffect(() => {
@@ -216,6 +216,8 @@ export default function Home() {
         <div className="page-container">
             <Header />
             <VideosSection
+                showGITOverlay={showGITOverlay}
+                setShowGITOverlay={setShowGITOverlay}
                 showDownload={showDownload}
                 setShowDownload={setShowDownload}
                 selectedVideo={selectedVideo}
@@ -229,7 +231,7 @@ export default function Home() {
             />
             <AboutSection
                 showGITOverlay={showGITOverlay}
-                setshowGITOverlay={setshowGITOverlay}
+                setShowGITOverlay={setShowGITOverlay}
             />
         </div>
     )

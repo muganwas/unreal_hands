@@ -114,13 +114,15 @@ nav {
 /** Pages */
 .page-container {
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	align-items: center;
 	padding: 0px;
+	margin: 0;
+	min-height: 100vh;
 }
 .videos-section {
 	display: flex;
-	position: relative;
 	width: 1530px;
 	align-items: center;
 	flex-direction: column;
@@ -159,7 +161,51 @@ nav {
 	z-index: 5;
 }
 .git-overlay {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	z-index: 10;
+}
+.git-form-container {
+	display: flex;
+	flex-direction: column;
+	width: 685px;
+	background-color: #fff;
+	padding: 50px;
+}
+#git-form {
+	display: flex;
+	flex-direction: column;
+}
+.required {
+	color: red;
+}
+.git-form-title {
+	font-weight: 22px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.git-form-subtitle {
+	font-weight: 18px;
+	margin-bottom: 20px;
+}
+
+.git-input {
+	height: 59px;
+	margin: 15px 0;
+	border: 1px solid #000;
+}
+
+.git-input-area {
+	height: 300px;
+	margin: 15px 0;
 }
 .about-section {
 	display: flex;
@@ -291,26 +337,33 @@ nav {
 	background-image: url('../images/cart_1.png');
 	background-position: 160px center;
 	background-color: #2483ff;
+	width: 509px;
 }
 .button.download-now {
 	background-image: url('../images/download.png');
 	background-position: 140px center;
 	background-color: #2483ff;
+	width: 509px;
 }
 .button.send {
 	background-image: url('../images/send.png');
 	background-position: 160px center;
 	background-color: #000;
+	width: 509px;
+}
+.button.submit {
+	margin-top: 30px;
+	background-color: #2483ff;
 }
 .button.buy-now,
 .button.download-now,
-.button.send {
+.button.send,
+.button.submit {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
 	font-size: 24px;
-	width: 509px;
 	height: 64px;
 	border-radius: 5px;
 	background-repeat: no-repeat;

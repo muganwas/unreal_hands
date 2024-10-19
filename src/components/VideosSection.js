@@ -7,6 +7,7 @@ import Download from "./Download";
 
 export default function VideosSection({
     showGITOverlay,
+    setShowGITOverlay,
     showCart,
     setShowCartOverlay,
     setSelectedVideo,
@@ -54,6 +55,7 @@ export default function VideosSection({
 
     }
 
+
     return (
         <div className="videos-section">
             {!selectedVideo && !boughtVideo && <span className="videos-title">
@@ -82,9 +84,18 @@ export default function VideosSection({
             {boughtVideo && <div className="cart-container">
                 <Download video={boughtVideo} />
             </div>}
-            {showGITOverlay && <div className="git-overlay">
-                <GetInTouch />
-            </div>}
+            {showGITOverlay &&
+                <div
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowGITOverlay(!showGITOverlay);
+                    }}
+                    className="git-overlay"
+                >
+                    <GetInTouch />
+                </div>
+            }
         </div>
     )
 }

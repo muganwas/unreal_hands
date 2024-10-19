@@ -1,7 +1,7 @@
-export default function AboutSection({ showGITOverlay, setshowGITOverlay }) {
+export default function AboutSection({ showGITOverlay, setShowGITOverlay }) {
     const toggleGITOverlay = (e) => {
         e.preventDefault();
-        setshowGITOverlay(!showGITOverlay);
+        setShowGITOverlay(!showGITOverlay);
     }
     return (
         <div className="about-section">
@@ -19,7 +19,7 @@ export default function AboutSection({ showGITOverlay, setshowGITOverlay }) {
                             <li>skin tones,</li>
                             <li>lighting,</li>
                             <li>background,</li>
-                            <li>and event <span className="blue bold">match screen light leaks, and gesture timing</span>to fit your custom videos perfectly. </li>
+                            <li>and event <span className="blue bold">match screen light leaks, and gesture timing</span> to fit your custom videos perfectly. </li>
                         </ul>
                         <p>
                             Say goodbye to Mocha tracking and tedious editing—just send us your content, and we'll handle the rest.
@@ -32,7 +32,6 @@ export default function AboutSection({ showGITOverlay, setshowGITOverlay }) {
                 </div>
                 <div className="get-in-touch">
                     <div className="git-illustration">
-
                     </div>
                     <div className="git-bottom">
                         <span onClick={toggleGITOverlay} className="button git">

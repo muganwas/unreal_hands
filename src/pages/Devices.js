@@ -19,7 +19,7 @@ export default function Devices() {
     const location = useLocation();
     const [videos, setVideos] = useState([]);
     const [showCart, setShowCartOverlay] = useState(false);
-    const [showGITOverlay, setshowGITOverlay] = useState(false);
+    const [showGITOverlay, setShowGITOverlay] = useState(false);
     const [showDownload, setShowDownload] = useState(false);
     const [boughtVideo, setBoughtVideo] = useState(false);
     const [selectedVideo, setSelectedVideo] = useState();
@@ -227,6 +227,8 @@ export default function Devices() {
         <div className="page-container">
             <Header />
             <VideosSection
+                showGITOverlay={showGITOverlay}
+                setShowGITOverlay={setShowGITOverlay}
                 showDownload={showDownload}
                 setShowDownload={setShowDownload}
                 selectedVideo={selectedVideo}
@@ -239,8 +241,8 @@ export default function Devices() {
                 location={location.pathname.split("/").pop()}
             />
             <AboutSection
-                howGITOverlay={showGITOverlay}
-                setshowGITOverlay={setshowGITOverlay}
+                showGITOverlay={showGITOverlay}
+                setShowGITOverlay={setShowGITOverlay}
             />
         </div>
     )

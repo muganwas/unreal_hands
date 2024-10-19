@@ -6,9 +6,13 @@ export default function GetInTouch() {
     // const [mediaFiles, setMediaFiles] = useState();
     // const [details, setDetails] = useState();
     return (
-        <div className="git-form-container">
-            <span>Green screen replacement service request</span>
-            <span>To ensure we deliver a flawless green screen replacement service, please provide the necessary information using the form below.</span>
+        <div onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        } className="git-form-container">
+            <span className="git-form-title">Green screen replacement service request</span>
+            <span className="git-form-subtitle">To ensure we deliver a flawless green screen replacement service, please provide the necessary information using the form below.</span>
             <form id="git-form">
                 <label htmlFor="name">
                     <span className="bold">Name</span>
@@ -24,7 +28,7 @@ export default function GetInTouch() {
                     <span className="bold">Media files</span>
                     <span>(.jpg, .png, .mp4, .mov up to 20 Mb)</span>
                     <span className="required">*</span>:</label>
-                <input id="media" type="file"></input>
+                <input className="git-input" id="media" type="file"></input>
                 <label htmlFor="details">Let us know any specific details, like desired age, skin tone or any specific adjustments for gestures and timing:</label>
                 <textarea className="git-input-area" id="details" ></textarea>
                 <span>
@@ -32,7 +36,7 @@ export default function GetInTouch() {
                     <span>- required fields.
                         After we receive your content, we’ll contact you to settle all the details. We offer 24-hour delivery once everything is confirmed!</span>
                 </span>
-                <span className="button git">Submit</span>
+                <span className="button submit">Submit</span>
             </form>
         </div>
     )

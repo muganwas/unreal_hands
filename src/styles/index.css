@@ -152,6 +152,7 @@ nav {
 	display: flex;
 	width: auto;
 	position: relative;
+	z-index: 10;
 }
 .video-thumb:hover > .button.buy {
 	opacity: 1;

@@ -27,8 +27,9 @@ export default function VideosSection({
 
     const toggleCartOverlay = (e) => {
         e.preventDefault();
-        if (!selectedVideo && e.target.id) {
-            const vid = videos.find(v => v.code === e.target.id);
+        const name = e.target.getAttribute('name');
+        if (!selectedVideo && name) {
+            const vid = videos.find(v => v.code === name);
             setSelectedVideo(vid);
             setShowCartOverlay(true);
         }
@@ -70,10 +71,14 @@ export default function VideosSection({
             {!selectedVideo && !boughtVideo && <div className="video-container">
                 {videos.map((vid, index) => {
                     return (
-                        <div key={`v-${index}`} className="video-thumb">
-                            <img alt={vid.device} src={vid.thumbnail} />
-                            <span id={vid.code} onClick={toggleCartOverlay} className="button buy">
-                            </span>
+                        <div
+                            name={vid.code}
+                            onClick={toggleCartOverlay}
+                            key={`v-${index}`}
+                            className="video-thumb button"
+                        >
+                            <img name={vid.code} alt={vid.device} src={vid.thumbnail} />
+                            <span name={vid.code} className="button buy"></span>
                         </div>
                     )
                 })}

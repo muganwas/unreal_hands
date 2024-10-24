@@ -272,6 +272,8 @@ nav {
 	text-align: right;
 }
 .buy-now-container {
+	position: relative;
+	justify-content: center;
 	display: flex;
 	gap: 40px;
 }
@@ -387,4 +389,13 @@ nav {
 	height: 50px;
 	padding: 10px;
 	margin-bottom: 20px;
+}
+.msg {
+	position: absolute;
+	color: #000;
+	font-weight: bold;
+	top: 50px;
+	padding: 50px;
+	background-color: #fff;
+	z-index: 20;
 }

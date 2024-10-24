@@ -11,11 +11,13 @@ export const formatVids = async (items, code, orientation, keywords = [], curren
         const name = item.name.split('.')[0];
         const vidURL = await getDownloadURL(ref(storage, item.fullPath));
         const thumbnailURL = await getDownloadURL(ref(storage, `${code}/preview/horizontal/` + name + '.jpg'));
+        const titleArr = name.split("_");
+        const title = titleArr[6] + " " + titleArr[7] + " " + titleArr[8] + " " + titleArr[9];
         currentVids.push({
             url: vidURL,
             thumbnail: thumbnailURL,
-            code,//"samsung-galaxy-a15",
-            title: name,
+            code,
+            title,
             orientation,
             keywords, /** get keywords from csv */
             resolution: [{

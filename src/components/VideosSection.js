@@ -22,6 +22,7 @@ export default function VideosSection({
     location
 }) {
     const [title, setTitle] = useState('');
+    const [tId, setTid] = useState();
 
     useEffect(() => {
         location && setTitle(capitalizeFirstLetter(location.replaceAll("-", " ")));
@@ -107,10 +108,10 @@ export default function VideosSection({
             </div>}
             {isLoading && <span className="loading"><img alt="videos loading" src={Loader} /></span>}
             {showCart && selectedVideo && <div className="cart-container">
-                <BuyNow video={selectedVideo} setBoughtVideo={setBoughtVideo} toggleBoughtOverlay={toggleBoughtOverlay} />
+                <BuyNow video={selectedVideo} setTid={setTid} setBoughtVideo={setBoughtVideo} toggleBoughtOverlay={toggleBoughtOverlay} />
             </div>}
-            {showDownload && boughtVideo && <div className="cart-container">
-                <Download video={boughtVideo} />
+            {showDownload && tId && boughtVideo && <div className="cart-container">
+                <Download tId={tId} setTid={setTid} setBoughtVideo={setBoughtVideo} setShowCartOverlay={setShowCartOverlay} setSelectedVideo={setSelectedVideo} video={boughtVideo} />
             </div>}
             {showGITOverlay &&
                 <div

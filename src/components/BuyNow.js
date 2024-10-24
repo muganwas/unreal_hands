@@ -1,11 +1,53 @@
-export default function BuyNow({ video, setBoughtVideo, toggleBoughtOverlay }) {
+import { useState } from "react";
+
+export default function BuyNow({ video, setBoughtVideo, toggleBoughtOverlay, setTid }) {
+    const [resolution, setResolution] = useState();
+    const [msg, setMsg] = useState();
+
     const buyVideo = async (e) => {
-        setBoughtVideo(video);
-        toggleBoughtOverlay(e);
+        if (resolution) {
+            /** set TID after transaction */
+            setTid('i42344');
+            setBoughtVideo(video);
+            toggleBoughtOverlay(e);
+        } else {
+            setMsg('Select resolution.');
+            setTimeout(() => {
+                setMsg();
+            }, 1000);
+        }
+    }
+
+    const chooseResolution = (e) => {
+        const resol = e.currentTarget.value;
+        setResolution(resol.split(" ")[0]);
+    }
+
+    const playVideo = (e) => {
+        try {
+            const vid = e.target;
+            vid.play();
+        } catch (e) {
+            console.log('play error ', e.message);
+        }
+    }
+
+    const pauseVideo = (e) => {
+        try {
+            const vid = e.target;
+            vid.pause();
+        } catch (e) {
+            console.log('pause error ', e.message);
+        }
     }
     return (
         <div className="buy-now-container">
-            <span className="thumbnail buy-now" alt={video.code} style={{ backgroundImage: `url(${video.thumbnail})` }}></span>
+            {msg && <span className="msg">{msg}</span>}
+            <span className="thumbnail buy-now" alt={video.code} style={{ backgroundImage: `url(${video.thumbnail})` }}>
+                <video className="thumbnail buy-now" name={video.code} onMouseEnter={playVideo} onMouseLeave={pauseVideo} muted>
+                    <source src={video.url} type="video/mp4" />
+                </video>
+            </span>
             <div className="video-info">
                 <span className="video-title bold">
                     {video.title}
@@ -31,7 +73,7 @@ export default function BuyNow({ video, setBoughtVideo, toggleBoughtOverlay }) {
                         {video?.resolution?.map(r =>
                             <span key={r.id} className="radio">
                                 <span className="res-info">
-                                    <input type="radio" id={r.id} name="resolution" value={r.type} />
+                                    <input onChange={chooseResolution} type="radio" id={r.id} name="resolution" value={r.type} />
                                     <label htmlFor={r.id}>{r.type}</label>
                                 </span>
                                 <span className="price bold">{r.price}</span>

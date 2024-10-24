@@ -4,6 +4,7 @@ import { capitalizeFirstLetter } from "../helpers";
 import BuyNow from "../components/BuyNow";
 import GetInTouch from "./GetInTouch";
 import Download from "./Download";
+import Loader from "../images/loading.gif";
 
 export default function VideosSection({
     showGITOverlay,
@@ -12,6 +13,7 @@ export default function VideosSection({
     setShowCartOverlay,
     setSelectedVideo,
     showDownload,
+    isLoading,
     setShowDownload,
     selectedVideo,
     boughtVideo,
@@ -56,6 +58,23 @@ export default function VideosSection({
 
     }
 
+    const playVideo = (e) => {
+        try {
+            const vid = e.target;
+            vid.play();
+        } catch (e) {
+            console.log('play error ', e.message);
+        }
+    }
+
+    const pauseVideo = (e) => {
+        try {
+            const vid = e.target;
+            vid.pause();
+        } catch (e) {
+            console.log('pause error ', e.message);
+        }
+    }
 
     return (
         <div className="videos-section">
@@ -76,17 +95,21 @@ export default function VideosSection({
                             onClick={toggleCartOverlay}
                             key={`v-${index}`}
                             className="video-thumb button"
+                            style={{ backgroundImage: `url(${vid.thumbnail})`, width: 504, height: 285 }}
                         >
-                            <img name={vid.code} alt={vid.device} src={vid.thumbnail} />
+                            <video name={vid.code} onMouseEnter={playVideo} onMouseLeave={pauseVideo} muted style={{ width: 504, height: 285 }} id={`video-${index}`}>
+                                <source src={vid.url} type="video/mp4" />
+                            </video>
                             <span name={vid.code} className="button buy"></span>
                         </div>
                     )
                 })}
             </div>}
+            {isLoading && <span className="loading"><img alt="videos loading" src={Loader} /></span>}
             {showCart && selectedVideo && <div className="cart-container">
                 <BuyNow video={selectedVideo} setBoughtVideo={setBoughtVideo} toggleBoughtOverlay={toggleBoughtOverlay} />
             </div>}
-            {boughtVideo && <div className="cart-container">
+            {showDownload && boughtVideo && <div className="cart-container">
                 <Download video={boughtVideo} />
             </div>}
             {showGITOverlay &&

@@ -9,11 +9,11 @@ export default function Header() {
                 <div className="left-header">
                     <Link to={"/"}><img className="logo" alt="unreal hands logo" src={TextLogo} /></Link>
                     <nav>
-                        <NavLink to={"/devices/apple-iphone-16"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
+                        <NavLink to={"/devices/iphone16"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
                             Apple iPhone 16
                         </NavLink>
-                        <NavLink to={"/devices/samsung-galaxy-a14"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
-                            Samsung Galaxy A14
+                        <NavLink to={"/devices/galaxya15"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
+                            Samsung Galaxy A15
                         </NavLink>
                         <NavLink to={"/devices/google-pixel-8"} className={({ isActive, isPending }) => isPending ? "pending-nav-link" : isActive ? "active-nav-link" : "nav-link"} >
                             Google Pixel 8

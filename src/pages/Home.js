@@ -3,14 +3,16 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import AboutSection from "../components/AboutSection";
 import VideosSection from "../components/VideosSection";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll } from "firebase/storage";
 import { storage } from "../helpers/firebase";
+import { formatVids } from "../helpers";
 
 export default function Home() {
     const location = useLocation();
     const [videos, setVideos] = useState([]);
     const [showCart, setShowCartOverlay] = useState(false);
     const [showDownload, setShowDownload] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [boughtVideo, setBoughtVideo] = useState(false);
     const [showGITOverlay, setShowGITOverlay] = useState(false);
     const [selectedVideo, setSelectedVideo] = useState();
@@ -18,40 +20,19 @@ export default function Home() {
     useEffect(() => {
         /** fetch videos and load state */
         async function fetchData() {
+            setIsLoading(true);
+            var vids = [];
+            /** "lazy loading" */
             const galaxya15 = await listAll(ref(storage, 'galaxya15/sd/horizontal'));
-            const vids = [];
-            galaxya15.items.forEach(async item => {
-                const name = item.name.split('.')[0];
-                const vidURL = await getDownloadURL(ref(storage, item.fullPath));
-                const thumbnailURL = await getDownloadURL(ref(storage, 'galaxya15/preview/horizontal/' + name + '.jpg'));
-                vids.push({
-                    url: vidURL,
-                    thumbnail: thumbnailURL,
-                    code: "samsung-galaxy-a15",
-                    title: name,
-                    orientation: "horizontal",
-                    // keywords: ["Samsung", "Asian Man", "street"],
-                    resolution: [{
-                        id: "hd",
-                        type: "HD (1920x1080px)",
-                        price: "$49"
-                    },
-                    {
-                        id: "sd",
-                        type: "SD (720x480px)",
-                        price: "$39"
-                    },
-                    {
-                        id: "4k",
-                        type: "4K (3840x2160px)",
-                        price: "$59"
-                    }],
-                    framerate: "24FPS",
-                    codec: "MOV ProRes 422"
-                });
-                //const csv = await getDownloadURL(ref(storage, 'galaxya15/csv/' + name + '.csv'));
-            });
+            vids = await formatVids(galaxya15.items, 'galaxya15', 'horizontal', ["Samsung", "street"], vids);
             setVideos(vids);
+            const iPhone16 = await listAll(ref(storage, 'iphone16/sd/horizontal'));
+            vids = await formatVids(iPhone16.items, 'iphone16', 'horizontal', ["iPhone", "street"], vids);
+            setVideos(vids);
+            const iPad = await listAll(ref(storage, 'ipad/sd/horizontal'));
+            vids = await formatVids(iPad.items, 'ipad', 'horizontal', ["iPad", "street"], vids);
+            setVideos(vids);
+            setIsLoading(false);
         }
         fetchData();
     }, []);
@@ -68,6 +49,7 @@ export default function Home() {
                 showDownload={showDownload}
                 setShowDownload={setShowDownload}
                 selectedVideo={selectedVideo}
+                isLoading={isLoading}
                 setSelectedVideo={setSelectedVideo}
                 setShowCartOverlay={setShowCartOverlay}
                 showCart={showCart}

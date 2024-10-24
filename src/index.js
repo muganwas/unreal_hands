@@ -12,11 +12,11 @@ const router = createBrowserRouter([
     Component: Home
   },
   {
-    path: "/devices/apple-iphone-16",
+    path: "/devices/iphone16",
     Component: Devices
   },
   {
-    path: "/devices/samsung-galaxy-a14",
+    path: "/devices/galaxya15",
     Component: Devices
   },
   {
